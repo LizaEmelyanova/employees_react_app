@@ -44,9 +44,19 @@ class App extends Component {
 
     onToggleProp = (id, prop) => {
         this.setState(({data}) => ({
-            data: data.map(
-                item => item.id === id ?
+            data: data.map(item =>
+                item.id === id ?
                 {...item, [prop]: !item[prop]} :
+                {...item}
+            )
+        }))
+    }
+
+    onChangeSalary = (id, salary) => {
+        this.setState(({data}) => ({
+            data: data.map(item =>
+                item.id === id ?
+                {...item, salary} :
                 {...item}
             )
         }))
@@ -106,6 +116,7 @@ class App extends Component {
                     data={visibleData}
                     onDelete={this.deleteEmployee}
                     onToggleProp={this.onToggleProp}
+                    onChangeSalary={this.onChangeSalary}
                 />
                 <EmployeesAddForm
                     addEmployee={this.addEmployee}
